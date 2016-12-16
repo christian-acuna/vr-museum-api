@@ -1,0 +1,3 @@
+class Museum < ApplicationRecord
+
+end

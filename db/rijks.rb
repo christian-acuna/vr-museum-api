@@ -5,50 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-ArtObject.delete_all
 Medium.delete_all
 Museum.delete_all
-
-require 'json'
-getty = File.read('./db/getty.json')
-data_hash = JSON.parse(getty)
-records = data_hash["Response"]["doc"]["record"]
-
-def getLargePicture(url)
-  url.gsub(/(thumbnail)/, 'enlarge')
-end
-
-def deletePlaceCreated(place)
-  if place == nil
-    nil
-  else
-    place.gsub(/(Place Created: )/, '')
-  end
-end
-
-getty = Museum.create(name:  "J. Paul Getty Museum", location: "1200 Getty Center Dr, Los Angeles, CA 90049", url: "https://www.getty.edu/museum/")
-
-records.each do |record|
-  medium = Medium.find_or_create_by(medium_type: record['Medium'])
-
-  ArtObject.create!(
-    museum_id: getty.id,
-    medium_id: medium.id,
-    title: record["PrimaryTitle"],
-    date: record["Date"],
-    artist: record["MakerName"],
-    # no description provided by this API
-    dimensions: record["Dimensions"],
-    thumbnail_url: record["imageThumbURI"],
-    image_url: getLargePicture(record["imageThumbURI"]),
-    place: deletePlaceCreated(record["Place"]),
-    link_to_object: record["recordLink"],
-    # no credit line provided by this API
-  )
-end
-
-
-
+ArtObject.delete_all
 
 def get_list_of_objects(page_num)
   options = { query: {
@@ -126,7 +85,7 @@ while page_num < 1
 
     medium = Medium.find_or_create_by(medium_type: art_object_json['physicalMedium'])
 
-      ap art_object = ArtObject.create!(
+      art_object = ArtObject.create!(
         medium_id:         medium.id,
         museum_id:         rijksmuseum.id,
         title:          art_object_json['title'],
