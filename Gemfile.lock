@@ -44,6 +44,7 @@ GEM
     byebug (9.0.6)
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
+    diff-lcs (1.2.5)
     erubis (2.7.0)
     ffi (1.9.14)
     globalid (0.3.7)
@@ -106,6 +107,25 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    rspec-core (3.5.4)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-mocks (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-rails (3.5.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
+    shoulda-matchers (3.1.1)
+      activesupport (>= 4.0.0)
     slop (3.6.0)
     spring (2.0.0)
       activesupport (>= 4.2)
@@ -139,6 +159,8 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
+  rspec-rails
+  shoulda-matchers
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
