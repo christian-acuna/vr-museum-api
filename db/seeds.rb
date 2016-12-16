@@ -49,9 +49,8 @@ while page_num < 1
   top_art_objects = get_list_of_objects(page_num)
   top_art_hash = top_art_objects["artObjects"]
 
-  ap art_object = top_art_hash[0]
 
-  # top_art_hash.each do |art_object|
+  top_art_hash.each do |art_object|
 
     headerImage = ''
     if art_object["headerImage"] && art_object["headerImage"]["url"]
@@ -74,11 +73,9 @@ while page_num < 1
     ap date
     artist = ''
 
-    # if art_object_json["principalMakers"]
-    #   artist = art_object_json["principalMakers"]["name"]
-    # end
-
-    ap artist
+    if art_object_json["principalMakers"]
+      artist = art_object_json["principalMakers"][0]['name']
+    end
 
     description = ''
     if art_object_json["label"] && art_object_json["label"]["description"]
@@ -86,8 +83,6 @@ while page_num < 1
     else
       description = art_object_json["description"]
     end
-
-    ap art_object_json['places'].class
 
     medium = Medium.find_or_create_by(medium_type: art_object_json['physicalMedium'])
 
@@ -101,11 +96,11 @@ while page_num < 1
         dimensions:     art_object_json["subTitle"],
         thumbnail_url:  headerImage,
         image_url:      art_object_json['webImage']['url'],
-        place:          '',
+        place:          art_object_json["classification"]["places"][0],
         link_to_object: art_object["links"]["web"],
         credit_line:    ''
       )
-  # end
+  end
   page_num += 1
 
 end
