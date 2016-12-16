@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216234216) do
+ActiveRecord::Schema.define(version: 20161216234340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "art_object_tags", force: :cascade do |t|
+    t.integer "tag_id"
+    t.integer "art_object_id"
+  end
 
   create_table "art_objects", force: :cascade do |t|
     t.integer  "museum_id"
