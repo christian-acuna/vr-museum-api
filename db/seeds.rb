@@ -144,3 +144,13 @@ while page_num < 1
   page_num += 1
 
 end
+
+
+# objects = Medium.first
+# u = User.create(email:"pp@gmail.com",password:"123456",username:"pp")
+# c = Collection.create(title: "test", description:"optional", primary_object_id:2,user:u)
+# objects.each{|o| c.art_objects << o}
+
+
+
+
