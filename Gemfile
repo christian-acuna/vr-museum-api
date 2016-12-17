@@ -9,6 +9,7 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'httparty'
 gem 'awesome_print'
+gem 'devise'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -26,6 +27,11 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'pry-rails'
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'shoulda-matchers'
 end
 
 group :development do

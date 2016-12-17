@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216205443) do
+ActiveRecord::Schema.define(version: 20161217001627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "art_object_tags", force: :cascade do |t|
+    t.integer "tag_id"
+    t.integer "art_object_id"
+  end
 
   create_table "art_objects", force: :cascade do |t|
     t.integer  "museum_id"
@@ -32,6 +37,30 @@ ActiveRecord::Schema.define(version: 20161216205443) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "collection_art_objects", force: :cascade do |t|
+    t.integer "collection_id"
+    t.integer "art_object_id"
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "primary_object_id"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "collection_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "collection_id"
+  end
+
   create_table "media", force: :cascade do |t|
     t.string   "medium_type"
     t.datetime "created_at",  null: false
@@ -44,6 +73,36 @@ ActiveRecord::Schema.define(version: 20161216205443) do
     t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tag_collections", force: :cascade do |t|
+    t.integer "tag_id"
+    t.integer "collection_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "access_token"
+    t.string   "username"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end
