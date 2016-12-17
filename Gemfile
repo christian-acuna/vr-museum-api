@@ -12,6 +12,7 @@ gem 'awesome_print'
 gem 'devise'
 gem 'active_model_serializers', '~>0.10.0'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'faker'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
