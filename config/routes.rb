@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :v1, defaults: {format: :json} do
     resources :art_objects, only: [:index, :show]
-    resources :searches, only: [:search]
+    resources :search
     resource :login, only: [:create, :destroy], controller: :sessions
   	resources :collections, only: [:index]
     resources :users do
@@ -12,8 +12,6 @@ Rails.application.routes.draw do
       post 'collections', to: 'user_collections#create'
       put 'collections', to: 'user_collections#update'
       delete 'collections', to: 'user_collections#destroy'
-
-
     end
   end
 
