@@ -2,12 +2,14 @@ Rails.application.routes.draw do
   # devise_for :users
 
   namespace :v1, defaults: {format: :json} do
+    resources :art_objects, only: [:index, :show]
+    resources :searches, only: [:search]
     resource :login, only: [:create, :destroy], controller: :sessions
   	resources :collections, only: [:index]
-    get '/search', to: 'collections#search'
     resources :users do
       get 'collections/:collection_id', to: 'user_collections#show'
       get 'collections', to: 'user_collections#index'
+      post 'collections', to: 'user_collections#create'
     end
   end
 
