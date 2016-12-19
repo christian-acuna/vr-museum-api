@@ -10,6 +10,10 @@ Rails.application.routes.draw do
       get 'collections/:collection_id', to: 'user_collections#show'
       get 'collections', to: 'user_collections#index'
       post 'collections', to: 'user_collections#create'
+      put 'collections', to: 'user_collections#update'
+      delete 'collections', to: 'user_collections#destroy'
+
+
     end
   end
 

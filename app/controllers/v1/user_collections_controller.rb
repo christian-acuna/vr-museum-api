@@ -33,8 +33,14 @@ module V1
 
     def destroy
       user = User.find(params[:user_id])
-      collection = user.collections
+      collection = user.collections.where(id: params[:collection_id])
       collection.destroy
+    end
+    
+    private
+
+    def collection_params
+      params.require(:user_collection).permit(:title, :description, :primary_object_id, :user_id)
     end
   end
 end
