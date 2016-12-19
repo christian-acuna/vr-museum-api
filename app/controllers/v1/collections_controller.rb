@@ -1,21 +1,9 @@
 module V1
 	class CollectionsController < ApplicationController
+		skip_before_action :authenticate_user_from_token!
 		def index
 			collections = Collection.all
 			render json: collections, each_serializer: CollectionSerializer
-		end
-
-		def search
-		  query = params[:q]
-
-			if query.blank?
-      render status: 400, json: { error: 'Expected parameter `q` '}
-    else
-      render(
-        status: 200,
-        json: results = Collection.where(["title LIKE ?", "%#{query}%"])
-      )
-    end
 		end
 
 	end

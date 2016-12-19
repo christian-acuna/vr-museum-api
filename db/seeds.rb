@@ -122,7 +122,7 @@ while page_num < 1
 
     medium = Medium.find_or_create_by(medium_type: art_object_json['physicalMedium'])
 
-      ap art_object = ArtObject.create!(
+      art_object = ArtObject.create!(
         medium_id:         medium.id,
         museum_id:         rijksmuseum.id,
         title:          art_object_json['title'],
