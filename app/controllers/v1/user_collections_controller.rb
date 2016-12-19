@@ -1,5 +1,6 @@
 module V1
   class UserCollectionsController < ApplicationController
+    skip_before_action :authenticate_user_from_token!, only: [:index, :show]
     def index
       user = User.find(params[:user_id])
       collections = user.collections
@@ -31,6 +32,9 @@ module V1
     end
 
     def destroy
+      user = User.find(params[:user_id])
+      collection = user.collections
+      collection.destroy
     end
   end
 end
