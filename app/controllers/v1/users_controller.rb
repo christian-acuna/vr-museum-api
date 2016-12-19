@@ -3,7 +3,7 @@ module V1
     skip_before_action :authenticate_user_from_token!
 
     def show
-      user = User.find(params[:user_id])
+      user = User.find(params[:id])
       render json: user, serializer: UserSerializer
     end
 
@@ -18,7 +18,7 @@ module V1
     end
 
     def update
-      user = User.find(params[:user_id])
+      user = User.find(params[:id])
       
       if user.update(user_params)
         render json: user, serializer: UserSerializer

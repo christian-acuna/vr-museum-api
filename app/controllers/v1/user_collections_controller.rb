@@ -14,7 +14,9 @@ module V1
     end
 
     def create
-      collection = Collection.new(collection_params)
+      user = User.find(params[:user_id])
+      collection = user.collections.new(collection_params)
+      # collection = Collection.new(collection_params)
 
       if collection.save
         render json: collection, each_serializer: CompleteCollectionSerializer
@@ -24,6 +26,9 @@ module V1
     end
 
     def update
+      # user = User.find(params[:user_id])
+      collection = Collection.find(params[:collection_id])
+
       if collection.update(collection_params)
         render json: collection, each_serializer: CompleteCollectionSerializer
       else
@@ -32,9 +37,14 @@ module V1
     end
 
     def destroy
-      user = User.find(params[:user_id])
-      collection = user.collections.where(id: params[:collection_id])
-      collection.destroy
+      # user = User /.find(params[:user_id])
+      collection = Collection.find(params[:collection_id])
+      
+      if collection.destroy
+        render( status: 200 )
+      else
+        render( status: 404 )
+      end
     end
     
     private

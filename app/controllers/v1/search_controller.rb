@@ -2,7 +2,7 @@ module V1
   class SearchController < ApplicationController
   	skip_before_action :authenticate_user_from_token!
     
-    def create
+    def search
       query = params[:q]
 
       if query.blank?
