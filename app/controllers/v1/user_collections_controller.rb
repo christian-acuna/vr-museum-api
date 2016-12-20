@@ -50,14 +50,14 @@ module V1
     def destroy
       # user = User /.find(params[:user_id])
       collection = Collection.find(params[:collection_id])
-      
+
       if collection.destroy
         render( status: 200 )
       else
         render( status: 404 )
       end
     end
-    
+
     private
 
     def collection_params
