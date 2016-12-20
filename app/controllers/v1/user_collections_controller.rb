@@ -3,8 +3,19 @@ module V1
     skip_before_action :authenticate_user_from_token!, only: [:index, :show]
     def index
       user = User.find(params[:user_id])
+      art_object_id = params[:art_object]
       collections = user.collections
-      render json: collections, each_serializer: CollectionSerializer
+      if params[:title] && art_object_id
+        art_object = ArtObject.find(art_object_id)
+
+        filtered_collections = collections.select do |collection|
+          !collection.art_objects.include?(art_object)
+        end
+        titles=filtered_collections.pluck(:title)
+        render json: titles
+      else
+        render json: collections, each_serializer: CollectionSerializer
+      end
     end
 
     def show
