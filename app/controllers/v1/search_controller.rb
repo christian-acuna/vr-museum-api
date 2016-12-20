@@ -13,5 +13,16 @@ module V1
       end
     end
 
+    def artsearch
+      query = params[:q]
+
+      if query.blank?
+        render status: 400, json: { error: 'Expected parameter `query` '}
+      else
+          results_art = ArtObject.where(["title LIKE ?", "%#{query}%"])
+          render json: results_art, each_serializer: ArtObjectSerializer
+      end
+    end
+
   end
 end

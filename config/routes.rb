@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :v1, defaults: {format: :json} do
     resources :art_objects, only: [:index, :show, :search]
     get 'search', to: 'search#search'
+    get 'artsearch', to: 'search#artsearch'
     resource :login, only: [:create, :destroy], controller: :sessions
   	resources :collections, only: [:index] do
       get 'likes', to: 'likes#like'
