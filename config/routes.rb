@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       post 'collections', to: 'user_collections#create'
       put 'collections/:collection_id', to: 'user_collections#update'
       delete 'collections/:collection_id', to: 'user_collections#destroy'
+      post 'collections/:collection_id/art_objects', to: 'user_collection_art_objects#create'
+      delete 'collections/:collection_id/art_objects', to: 'user_collection_art_objects#destroy'
 
     end
   end
