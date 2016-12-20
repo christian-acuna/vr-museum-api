@@ -11,7 +11,7 @@ module V1
         filtered_collections = collections.select do |collection|
           !collection.art_objects.include?(art_object)
         end
-        titles=filtered_collections.pluck(:title)
+        titles=filtered_collections.pluck(:title,:id)
         render json: titles
       else
         render json: collections, each_serializer: CollectionSerializer
