@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
 
   namespace :v1, defaults: {format: :json} do
-    resources :art_objects, only: [:index, :show]
+    resources :art_objects, only: [:index, :show, :search]
     get 'search', to: 'search#search'
     resource :login, only: [:create, :destroy], controller: :sessions
   	resources :collections, only: [:index]
