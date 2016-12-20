@@ -11,7 +11,7 @@ module V1
         filtered_collections = collections.select do |collection|
           !collection.art_objects.include?(art_object)
         end
-        titles=filtered_collections.pluck(:title)
+        titles=filtered_collections.pluck(:title,:id)
         render json: titles
       else
         render json: collections, each_serializer: CollectionSerializer
@@ -50,14 +50,14 @@ module V1
     def destroy
       # user = User /.find(params[:user_id])
       collection = Collection.find(params[:collection_id])
-      
+
       if collection.destroy
         render( status: 200 )
       else
         render( status: 404 )
       end
     end
-    
+
     private
 
     def collection_params
