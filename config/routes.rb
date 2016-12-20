@@ -6,13 +6,23 @@ Rails.application.routes.draw do
     resources :art_objects, only: [:index, :show]
     get 'search', to: 'search#search'
     resource :login, only: [:create, :destroy], controller: :sessions
-  	resources :collections, only: [:index]
+  	resources :collections, only: [:index] do
+      get 'likes', to: 'likes#like'
+      # get 'tags', to: 'tags#index'
+      post 'tags', to: 'tags#create'
+      delete 'tags', to: 'tags#destroy'
+      end
     resources :users do
+      get 'favorites', to: 'favorites#index'
+      post 'favorites', to: 'favorites#create'
+      delete 'favorites', to: 'favorites#destroy'
+
       get 'collections/:collection_id', to: 'user_collections#show'
       get 'collections', to: 'user_collections#index'
       post 'collections', to: 'user_collections#create'
       put 'collections/:collection_id', to: 'user_collections#update'
       delete 'collections/:collection_id', to: 'user_collections#destroy'
+
     end
   end
 
