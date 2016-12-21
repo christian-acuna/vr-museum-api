@@ -2,7 +2,7 @@ module V1
   class UserCollectionArtObjectsController < ApplicationController
 
     def create
-      user = User.find(params[:user_id])
+      user = User.find(params[:access_token])
       p collection = user.collections.find(params[:collection_id])
       p art_object = ArtObject.find(params[:art_object_id])
       p new_art_object= CollectionArtObject.new(collection_id:collection.id,art_object_id:art_object.id)
@@ -15,7 +15,7 @@ module V1
     end
 
     def destroy
-      user = User.find(params[:user_id])
+      user = User.find(params[:access_token])
       collection = user.collections.find(params[:collection_id])
       art_object = ArtObject.find(params[:art_object_id])
 
