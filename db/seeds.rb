@@ -51,7 +51,7 @@ records.each do |record|
     # no description provided by this API
     dimensions: record["Dimensions"],
     thumbnail_url: record["imageThumbURI"],
-    image_url: cloudinary_url,
+    image_url: large_image,
     place: deletePlaceCreated(record["Place"]),
     link_to_object: record["recordLink"],
     vr_url: result["url"]
@@ -165,6 +165,6 @@ mediums_array.each do |medium|
   objects.each{|o| c.art_objects << o}
 end
 
-u = User.create(email:"pp@gmail.com",password:"123456",username:"pp")
-c = Collection.create(title: "test", description:"optional", primary_object_id:2,user:u)
-objects.each{|o| c.art_objects << o}
+# u = User.create(email:"pp@gmail.com",password:"123456",username:"pp")
+# c = Collection.create(title: "test", description:"optional", primary_object_id:2,user:u)
+# objects.each{|o| c.art_objects << o}
