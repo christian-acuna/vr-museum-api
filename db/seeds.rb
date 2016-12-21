@@ -149,7 +149,7 @@ while page_num < 1
         place:          art_object_json["classification"]["places"][0],
         link_to_object: art_object["links"]["web"],
         credit_line:    '',
-        vr_url
+        vr_url:         cloudinary_url
       )
   end
   page_num += 1
