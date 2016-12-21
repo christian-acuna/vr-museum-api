@@ -11,6 +11,10 @@ Museum.delete_all
 User.delete_all
 Collection.delete_all
 
+require 'cloudinary'
+Cloudinary::Api.delete_all_resources()
+
+
 require 'json'
 getty = File.read('./db/getty.json')
 data_hash = JSON.parse(getty)
@@ -32,6 +36,11 @@ getty = Museum.create(name:  "J. Paul Getty Museum", location: "1200 Getty Cente
 
 records.each do |record|
   medium = Medium.find_or_create_by(medium_type: record['Medium'])
+  image_ending = record["imageThumbURI"].split('/').last
+  large_image = getLargePicture(record["imageThumbURI"])
+
+  result = Cloudinary::Uploader.upload(large_image)
+  ap cloudinary_url = result["url"]
 
   ArtObject.create!(
     museum_id: getty.id,
@@ -42,9 +51,10 @@ records.each do |record|
     # no description provided by this API
     dimensions: record["Dimensions"],
     thumbnail_url: record["imageThumbURI"],
-    image_url: getLargePicture(record["imageThumbURI"]),
+    image_url: large_image,
     place: deletePlaceCreated(record["Place"]),
     link_to_object: record["recordLink"],
+    vr_url: result["url"]
     # no credit line provided by this API
   )
 end
@@ -121,6 +131,10 @@ while page_num < 1
     end
 
     medium = Medium.find_or_create_by(medium_type: art_object_json['physicalMedium'])
+    image_url = art_object_json['webImage']['url']
+
+    result = Cloudinary::Uploader.upload(image_url)
+    ap cloudinary_url = result["url"]
 
       art_object = ArtObject.create!(
         medium_id:         medium.id,
@@ -131,10 +145,11 @@ while page_num < 1
         description:    description,
         dimensions:     art_object_json["subTitle"],
         thumbnail_url:  headerImage,
-        image_url:      art_object_json['webImage']['url'],
+        image_url:      image_url,
         place:          art_object_json["classification"]["places"][0],
         link_to_object: art_object["links"]["web"],
-        credit_line:    ''
+        credit_line:    '',
+        vr_url:         cloudinary_url
       )
   end
   page_num += 1
