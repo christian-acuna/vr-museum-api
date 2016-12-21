@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
 
   namespace :v1, defaults: {format: :json} do
+    get 'images', to: 'images#index'
     resources :art_objects, only: [:index, :show, :search]
     get 'search', to: 'search#search'
     get 'artsearch', to: 'search#artsearch'
@@ -25,6 +26,8 @@ Rails.application.routes.draw do
       delete 'collections/:collection_id', to: 'user_collections#destroy'
       post 'collections/:collection_id/art_objects', to: 'user_collection_art_objects#create'
       delete 'collections/:collection_id/art_objects', to: 'user_collection_art_objects#destroy'
+
+
 
     end
   end
