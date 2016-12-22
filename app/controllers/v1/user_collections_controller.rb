@@ -13,6 +13,8 @@ module V1
         end
         titles=filtered_collections.pluck(:title,:id)
         render json: titles
+      elsif params[:vr_mode]
+        render json: collections, each_serializer: CompleteCollectionSerializer
       else
         render json: collections, each_serializer: CollectionSerializer
       end
