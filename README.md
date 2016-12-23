@@ -13,7 +13,7 @@
 
 # Link to repositories
 
-* A-frame react(VR) (https://github.com/parinaz77/aframe-react-boilerplate)
-* Front-end react (https://github.com/christian-acuna/react-vr-museum)
+* [A-frame react(VR)] (https://github.com/parinaz77/aframe-react-boilerplate)
+* [Front-end react] (https://github.com/christian-acuna/react-vr-museum)
 
 
