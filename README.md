@@ -16,22 +16,4 @@
 * A-frame react(VR) (https://github.com/parinaz77/aframe-react-boilerplate)
 * Front-end react (https://github.com/christian-acuna/react-vr-museum)
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
