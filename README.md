@@ -1,5 +1,5 @@
 
-# Vmuse(http://vr-react-museum.herokuapp.com/)
+# Vmuse (http://vr-react-museum.herokuapp.com/)
 [![Code Climate](https://codeclimate.com/github/christian-acuna/vr-museum-api/badges/gpa.svg)](https://codeclimate.com/github/christian-acuna/vr-museum-api)
 [![Build Status](https://travis-ci.org/christian-acuna/vr-museum-api.svg?branch=development)](https://travis-ci.org/christian-acuna/vr-museum-api)
 
