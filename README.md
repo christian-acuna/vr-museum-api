@@ -6,6 +6,9 @@
 # Description
 Explore art from around the world in VR by creating your own collection of art from the J. Paul Getty Museum and Rijksmuseum in the Netherlands. View high resolution images of art in 2D and then jump into your own virtual gallery where you can see all your art with different backgrounds.
 
+![pic1](/public/images/pic1.png)
+
+![pic1](/public/images/pic2.png)
 # Authored by
 
 * [Parinaz Khosraviani] (https://github.com/parinaz77)
@@ -16,8 +19,8 @@ Explore art from around the world in VR by creating your own collection of art f
 
 # Link to repositories
 
-* [A-frame react(VR)] (https://github.com/parinaz77/aframe-react-boilerplate)
-* [Front-end react] (https://github.com/christian-acuna/react-vr-museum)
+* [A-frame (react(VR))] (https://github.com/parinaz77/aframe-react-boilerplate)
+* [Front-end (react)] (https://github.com/christian-acuna/react-vr-museum)
 
 # Technologies Used
 * Rails API
